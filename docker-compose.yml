@@ -1,0 +1,20 @@
+php:
+  image: php:7.2-apache
+  container_name: senac-php
+  ports:
+    - "80:80"
+    - "443:443"
+  volumes:
+    - /home/rubensfilho/GIT/senac-php:/var/www/html
+  links:
+    - db
+
+db:
+  image: mysql:latest
+  container_name: senac-mysql
+  ports:
+    - "3306:3306"
+  volumes:
+    - /var/lib/mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=root
